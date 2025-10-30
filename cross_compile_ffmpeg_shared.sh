@@ -5548,6 +5548,12 @@ build_openssh() {
 build_libffi() {
 	download_and_unpack_file https://github.com/libffi/libffi/releases/download/v3.4.8/libffi-3.4.8.tar.gz libffi-3.4.8
 	cd libffi-3.4.8
+	
+#	Ensure out-of-tree build directory exists
+    mkdir -p x86_64-w64-mingw32
+    cd x86_64-w64-mingw32
+	
+	
 #		apply_patch_p1 https://raw.githubusercontent.com/msys2/MINGW-packages/refs/heads/master/mingw-w64-libffi/libffi-3.4.7-Revert-Fix-x86-ffi64-calls-with-6-gp-and-some-sse-re.patch
 		generic_configure_make_install "--disable-symvers"
 	cd ..
